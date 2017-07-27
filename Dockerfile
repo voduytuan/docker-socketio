@@ -9,13 +9,12 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN /bin/mkdir -p /srv/logs
 
-
-RUN npm install --silent socket.io ioredis
-RUN npm dedupe
-
 WORKDIR /srv
 
-EXPOSE 3000
+RUN npm install --silent socket.io
+RUN npm dedupe
+
+EXPOSE 8080
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
